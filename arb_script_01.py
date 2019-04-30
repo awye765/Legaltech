@@ -15,10 +15,12 @@ arb_institution_list = ["DIS"]
 
 arb_institution_match = []
 
-# H2 - Arbitration Clause (Institution)
+# Check Clause for matching word
 
 def searchWholeWord(w):
     return re.compile(r'\b({0})\b'.format(w), flags=re.IGNORECASE).search
+
+# H2 - Arbitration Clause (Institution)
 
 def extractWholeWord(arb_institution_list):
     for cat in arb_institution_list:
@@ -30,6 +32,12 @@ def extractWholeWord(arb_institution_list):
             print("Could not extract arbitration institution")
 
 extractWholeWord(arb_institution_list)
+
+def add_word_to_excel_cell(arb_institution_match):
+    worksheet["H2"] = arb_institution_match[0]
+    workbook.save("Arb_Test_Data_02.xlsx")
+
+add_word_to_excel_cell(arb_institution_match)
 # I2 - Arbitration Clause (Seat / Place / Venue) - CITY
 
 # J2 - Arbitration Clause (Seat / Place / Venue) - COUNTRY
